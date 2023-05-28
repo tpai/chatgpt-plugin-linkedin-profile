@@ -1,25 +1,25 @@
 # ChatGPT Plugin: LinkedIn Profile
 
-This is a ChatGPT plugin that assists interviewers in retrieving public LinkedIn profiles and generating questions.
+This is a ChatGPT plugin that assists both interviewers and interviewees.
+
+## Features
+
+- Generate interview questions
+- Compare multiple candidate profiles in one place
+- Find the weakness of the profile
+- And more!
 
 ## Usage
 
-To use this plugin, follow these steps:
+⚠️ **The plugin is currently under review by OpenAI.** You can install the unverified version if you would like to try it: `linkedin-profile-svc.tonypa.in`
 
-1. Launch ChatGPT.
-2. Navigate to the plugins menu and enable the LinkedIn Profile plugin.
-3. Use a prompt like this: "Generate 5 questions for an interviewer, and the LinkedIn profile name is 'XXX'."
+![](images/install_unverified.gif)
 
-## Development
+After installing the plugin, you can input a prompt as below.
 
-To launch a local development environment, follow these steps:
+Example: `Generate 5 questions based on the LinkedIn profile '{public_linkedin_profile_id}'.`
 
-1. Ensure you have Docker and Docker Compose installed on your machine.
-2. Open a terminal and navigate to the project directory.
-3. Run the following command:
-    ```sh
-    docker-compose up -d --build
-    ```
+![](images/chat_with_profile.gif)
 
 ## License
 
