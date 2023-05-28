@@ -13,7 +13,8 @@ def get_profile_from_html(page_html):
     """
         ABOUT SECTION
     """
-    about = soup.find('section', attrs={"data-section":"summary"}).find("p").get_text(strip=True)
+    about_section = soup.find('section', attrs={"data-section":"summary"})
+    about = about_section.find("p").get_text(strip=True) if about_section else ''
 
     """
         EXPERIENCE SECTION
