@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  net:
+    image: alpine:3.7
+    network_mode: bridge
+    ports:
+      - 8080:8080
+      - 9222:9222
+    command: tail -f /dev/null
+    restart: always
+  app:
+    build:
+      context: .
+    network_mode: service:net
+    environment:
+      - CHROME_HOST=localhost
+      - CHROME_PORT=9222
+    depends_on:
+      - chrome
+  chrome:
+    image: alpeware/chrome-headless-trunk:rev-905146
+    network_mode: service:net

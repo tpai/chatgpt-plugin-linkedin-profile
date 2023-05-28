@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+bs4
+pyyaml
+pyppeteer

@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "linkedinprofile",
+  "name_for_human": "LinkedIn Profile",
+  "description_for_model": "Retrieve public LinkedIn profiles.",
+  "description_for_human": "Chat with public LinkedIn profiles.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "is_user_authenticated": "false",
+    "url": "$host/.well-known/openapi.yaml"
+  },
+  "logo_url": "$host/.well-known/logo.png",
+  "contact_email": "tony77794@gmail.com",
+  "legal_info_url": "https://www.microsoft.com/en-us/legal/"
+}
