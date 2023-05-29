@@ -7,6 +7,7 @@ import asyncio
 import socket
 import json
 import os
+import re
 
 app = FastAPI()
 app.include_router(wellknown)
@@ -20,6 +21,22 @@ print(chrome_ip, chrome_port)
 
 @app.get("/profile", summary="Get user profile", operation_id="getProfile")
 async def get_profile(query: str = None):
+    if query:
+        # Extract username from query using regex
+        username_match = re.search(r'(?<=linkedin.com/in/)[\w-]+', query)
+        if username_match:
+            username = username_match.group(0)
+        else:
+            username = query.lower().strip()
+        # Construct the LinkedIn URL
+        url = f"https://www.linkedin.com/in/{username}/"
+
+        print(url)
+    else:
+        output = {"error": "Invalid query"}
+        return output
+
+    print('Checking health for chrome...')
 
     # wait until chrome is alive
     async def wait_for_chrome():
@@ -27,7 +44,6 @@ async def get_profile(query: str = None):
         while True:
             try:
                 with socket.create_connection((chrome_ip, chrome_port), timeout=1):
-                    print('Checking health for chrome...')
                     break
             except OSError:
                 await asyncio.sleep(1)
@@ -49,15 +65,6 @@ async def get_profile(query: str = None):
     page = await context.newPage()
 
     try:
-        if query:
-            # Retrieve username from query
-            username = query.lower().strip()
-            # Construct the LinkedIn URL
-            url = f"https://linkedin.com/in/{username}/"
-        else:
-            # Default LinkedIn URL
-            url = "https://linkedin.com/in/ryanroslansky/"
-
         # Set the user-agent header
         await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36')
         # Navigate to the specified URL
@@ -69,7 +76,7 @@ async def get_profile(query: str = None):
         output = get_profile_from_html(page_html)
     except Exception as e:
         print(f"Error occurred: {e}")
-        output = {"error": "An error occurred while processing the request."}
+        output = {"error": "The requested profile is private or does not exist."}
     finally:
         await page.close()
     return output
