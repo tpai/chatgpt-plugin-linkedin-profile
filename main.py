@@ -29,7 +29,7 @@ async def get_profile(query: str = None):
         else:
             username = query.lower().strip()
         # Construct the LinkedIn URL
-        url = f"https://www.linkedin.com/in/{username}/"
+        url = f"http://www.linkedin.com/in/{username}/"
 
         print(url)
     else:
@@ -65,6 +65,9 @@ async def get_profile(query: str = None):
     page = await context.newPage()
 
     try:
+        # Set a foo=bar cookie for the page
+        await page.setCookie({'name':"sl", 'value':"yoooooo", 'domain':".www.linkedin.com"})
+
         # Set the user-agent header
         await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36')
         # Navigate to the specified URL
