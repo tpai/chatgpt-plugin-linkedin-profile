@@ -1,3 +1,5 @@
+# ⚠️ **The reason to archive repo: LinkedIn introduced arkoselab to block content scraper, it will take too much effort to bypass.**
+
 # ChatGPT Plugin: LinkedIn Profile
 
 This is a ChatGPT plugin that assists both interviewers and interviewees.
@@ -11,7 +13,7 @@ This is a ChatGPT plugin that assists both interviewers and interviewees.
 
 ## Usage
 
-⚠️ **The plugin is currently under review by OpenAI.** You can install the unverified version if you would like to try it: `linkedin-profile-svc.tonypa.in`
+You can install the unverified version if you would like to try it: `linkedin-profile-svc.tonypa.in`
 
 ![](images/install_unverified.gif)
 
